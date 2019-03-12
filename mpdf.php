@@ -113,18 +113,18 @@
 			$text = trim(str_replace(array('[html]', '[/html]', "\r", "\n", "\t"), '', $text));
 
 			$text		= $text;					//define text
-			$creator	= SITENAME;					//define creator
+			//$creator	= SITENAME;					//define creator
 			$author		= $user_name;				//define author
 			$title		= $row['news_title'];		//define title
 			$subject	= $category_name;			//define subject
 			$keywords	= '';						//define keywords
 
 			//define url and logo to use in the header of the pdf file
-			$url		= SITEURL.'news.php?item.'.$row['news_id'];
+			$url = e107::getUrl()->create('news/view/item', $row, array('full' => 1));
 
 			//always return an array with the following data:
-			$text = array($text, $creator, $author, $title, $subject, $keywords, $url);
-			$pdf->create($text);
+			//$text = array($text, $creator, $author, $title, $subject, $keywords, $url);
+			$pdf->create($text, $author, $title, $subject, $keywords, $url);
 		}
 	}
 
